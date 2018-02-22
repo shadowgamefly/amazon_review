@@ -60,7 +60,7 @@ def keyword_match_gibbs(properties, reviews, prod):
                         score += math.log(topics[p.topic][w])
                 perplexity = math.exp(-score / len(words))
                 # print(perplexity)
-                if perplexity > 3.0:
+                if perplexity > 2.3:
                     ps = sid.polarity_scores(sentence.lower())['compound']
                     ret.append({'related_property': p, 'best_sentence': sentence, 'related_review': review, 'sentiment': ps})
 
