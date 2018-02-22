@@ -88,7 +88,7 @@ def prod(request):
     data = find_relationship(prod, start, cnt)
 
     print("total: ", time.time() - start_t)
-    return _success(200, {"has_more": has_more, **data})
+    return _success(200, { "has_more": has_more, **data })
 
 
 def click(request):
@@ -152,7 +152,7 @@ def save_property(query, prod):
     return saved_properties
 
 def find_relationship(prod, start, cnt):
-    ret = {}
+    ret = { "payload": [] }
     related_properties = Property.objects.filter(prod = prod)
     for rp in related_properties:
         relationships = Relationship.objects.filter(
@@ -161,7 +161,17 @@ def find_relationship(prod, start, cnt):
             related_review__page__gte=start,
             related_review__page__lt=start+cnt,
         )
-        ret[rp.xpath] = ranker.rank(relationships)
+        ret["payload"].append({
+            "xpath": rp.xpath, "topic": rp.topic, "reviews": [],
+        })
+        for value in ranker.rank(relationships):
+            for best_sentence, content in value.items():
+                ret["payload"][-1]["reviews"].append({
+                    "content": best_sentence,
+                    "id": content[1],
+                    "sentiment": float(content[2]),
+                    "ranking": int(content[3]),
+                })
     return ret
 
 ####Deprecated####

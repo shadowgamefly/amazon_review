@@ -27,7 +27,7 @@ def load_html(url, asin, pageid):
 	page = requests.get(url, headers = header, proxies=proxy)
 
 	filename = str("%s_%s_%s_%s"%(asin, pageid, str(hid), str(pid)))
-	write_html(page, "/af12/jw7jb/public_html/%s.html"%(filename))
+	# write_html(page, "/af12/jw7jb/public_html/%s.html"%(filename))
 
 	page_response = page.text
 	return page_response

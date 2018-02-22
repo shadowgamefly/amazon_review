@@ -18,7 +18,7 @@ def request_parser(url, asin=None, page_count=None):
 
 def is_blocked(parser):
 	title = parser.xpath('//title/text()')
-	print(title)
+	# print(title)
 	return title == 'Robot Check'
 	# XPATH_CAPTCHA = '//form[@action="/errors/validateCaptcha"]'
 	# has_captcha_form = parser.xpath(XPATH_CAPTCHA)

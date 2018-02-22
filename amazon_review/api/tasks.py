@@ -25,7 +25,7 @@ def parse_async(asin, num_workers=1):
             ret_list = res.get(timeout=10)
             if correct_terminate(ret_list): need_break = True
         if need_break: break
-        
+
         pc += num_workers
 
         # update task state to reflect the increment in page count
@@ -58,7 +58,7 @@ def worker(asin, pc):
             print("asin: %s, page: %d, count: %d" % (asin, pc, count))
             if count > 0:
                 saved_reviews = save_review(reviews, prod, pc)
-                matcher.keyword_match(properties, saved_reviews, prod)
+                matcher.keyword_match_gibbs(properties, saved_reviews, prod)
             res_cnt = count; break
 
         except ValueError as e:
@@ -92,4 +92,3 @@ def correct_terminate(l):
                 if sorted_l[j][0] != 0: return False
             return True
     return False
-
