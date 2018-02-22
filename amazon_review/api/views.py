@@ -168,9 +168,9 @@ def find_relationship(prod, start, cnt):
             for best_sentence, content in value.items():
                 ret["payload"][-1]["reviews"].append({
                     "content": best_sentence,
-                    "id": content[1],
+                    "reviewID": content[1],
                     "sentiment": float(content[2]),
-                    "ranking": int(content[3]),
+                    "feedbackID": int(content[3]),
                 })
     return ret
 
