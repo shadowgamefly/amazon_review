@@ -10,6 +10,5 @@ if __name__ == '__main__':
                 key = w[ : w.find('(')]
                 value = float(w[w.find('(')+1 : w.find(')')])
                 ret["Topic %d" % i][key] = value
-
     print("topics = \\")
     pprint.pprint(ret)
