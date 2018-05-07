@@ -222,8 +222,9 @@ def find_relationship(prod, start, cnt, url):
                     "id": content[1],
                     "sentiment": float(content[2]),
                     "ranking": int(content[3]),
-                    "clciked": int(content[4]),
-                    "rating": float(content[5])
+                    "clicked": int(content[4]),
+                    "rating": float(content[5]), 
+                    "subtopic": int(content[6])
                 })
 
     return ret

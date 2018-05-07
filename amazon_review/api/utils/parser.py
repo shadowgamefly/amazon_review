@@ -60,8 +60,9 @@ def ParseProduct(asin):
 			property_dict = parse_property(parser)
 			general_info.update({'asin': asin, 'properties':property_dict})
 			return general_info
-		except ValueError:
-			print("Retrying to get the correct response")
+		except ValueError as e:
+			raise e
+			#print("Retrying to get the correct response")
 	return {"error":"failed to process the page","asin":asin}
 
 def parse_general(parser):

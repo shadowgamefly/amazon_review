@@ -26,6 +26,7 @@ class Relationship(models.Model):
     url = models.CharField(max_length=1023, default='')
     # added by find_cluster
     subtopic = models.IntegerField(default=-1)
+
     def __str__(self):
         return str(model_to_dict(self))
 

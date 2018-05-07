@@ -51,7 +51,7 @@ def parse_async(asin, num_workers=1, need_parse=True, url=''):
 
         rels = []
         if url == "":
-            rels = matcher.keyword_match(property_data, review_data)
+            rels = matcher.htmm_inference(property_data, review_data)
         else:
             rels = fetch_from_api(url, property_data, review_data)
         save_relationship(rels, prod, url)
